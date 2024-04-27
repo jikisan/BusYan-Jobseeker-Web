@@ -1,0 +1,41 @@
+.job-container {
+    height: fit-content;
+    width: 100%;
+    padding: 20px 100px 0px 100px;
+    max-height: calc(100vh - 320px);
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Create two columns with equal width */
+    gap: 10px;
+    /* Add spacing between items */
+    align-items: start;
+}
+
+.job-container>.job-card {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 2px 10px lightgrey;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 20px 10px;
+    justify-content: space-between;
+}
+
+.job-container>.job-card>h5>i {
+    margin-right: 5px;
+}
+
+.job-container>.job-card>span {
+    font-size: 14px;
+}
+
+.job-container>.job-card>p {
+    background-color: #b2eda3;
+    font-weight: bold;
+}
+
+.job-container>.job-card>span {
+    color: lightgray;
+}

@@ -1,0 +1,27 @@
+
+
+.specializations-container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 20px;
+}
+
+.specializations-card {
+    width: 200px;
+    height: 150px;
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    align-items: center;
+    align-content: center;
+}
+
+.specializations-card > p {
+    width: auto;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    justify-content: center;
+}

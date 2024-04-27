@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body{
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  background: whitesmoke;
+}
+
+.banner{
+  height: 100%;
+  flex: 1;
+}
+
+.banner img{
+  height: 100%;
+}
+
+.wrapper{
+  height: 100%;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex: 2;
+}
+
+.wrapper .card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 600px;
+  width: 600px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+}
+
+.wrapper .card form{
+  height: 100%;
+  width: 100%;
+  padding: 10px 30px 50px 30px;
+}
+
+.wrapper .card .logo{
+  display: flex;  
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 30px;
+  color: white;
+  background-color: #8B819A;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+
+.wrapper .card h3{
+  margin-bottom: 40px;
+}
+
+
+.wrapper .card form .field{
+  height: 40px;
+  width: 100%;
+  margin-top: 40px;
+  position: relative;
+}
+
+.wrapper .card form .field input{
+  height: 130%;
+  width: 100%;
+  outline: none;
+  font-size: 15px;
+  padding-left: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.wrapper .card form .field input:focus,
+.card form .field input:valid{
+  border-color: #4158d0;
+}
+.wrapper .card form .field label{
+  position: absolute;
+  top: 65%;
+  left: 20px;
+  color: #999999;
+  font-weight: 400;
+  font-size: 15px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.card form .field input:focus ~ label,
+.card form .field input:valid ~ label{
+  top: 0%;
+  font-size: 16px;
+  color: #4158d0;
+  background: #fff;
+  transform: translateY(-50%);
+}
+
+.card form .field input[type="submit"]{
+  color: #fff;
+  border: none;
+  padding-left: 0;
+  margin-top: -10px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  transition: all 0.3s ease;
+}
+
+.card form .field input[type="submit"]:active{
+  transform: scale(0.95);
+}
+
+.wrapper .card form .field button{
+  height: 140%;
+  width: 100%;
+  outline: none;
+  font-size: 17px;
+  padding-left: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.card form .field button[type="submit"]{
+  color: #fff;
+  border: none;
+  padding-left: 0;
+  margin-top: -10px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  transition: all 0.3s ease;
+}
+
+.card form .field button[type="submit"]:active{
+  transform: scale(0.95);
+}
