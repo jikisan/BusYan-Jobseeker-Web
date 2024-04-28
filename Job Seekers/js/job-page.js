@@ -8,6 +8,7 @@ const myData = JSON.parse(sessionStorage.getItem('currentUser'));
 
 const jobContainer = document.querySelector(".job-container");
 const jobPageModal = document.getElementById("jobPageModal");
+const jobPageModalContent = document.querySelector(".job-page-modal-content");
 const viewJobModalCloseBtn = document.querySelector(".viewJobModalCloseBtn");
 
 
@@ -47,6 +48,9 @@ viewJobModalCloseBtn.addEventListener('click', hideViewJobModal);
 
 
 function init() {
+    if (myData === undefined || myData === null) {
+        window.location.href = './../../login.html'; // Redirect if credentials match
+    }
     generateJobs();
 };
 
@@ -283,7 +287,9 @@ function getFormattedDate() {
 }
 
 function goToApplyPage() {
-    alert('apply page')
+    generateUserDetails();
+    generateQuestionsForParticipant();
+    showApplyJobModal();
 }
 
 // Function to initialize the radio filter and set up event listeners
@@ -306,3 +312,78 @@ function showViewJobModal() {
 function hideViewJobModal() {
     jobPageModal.style.display = "none";
 }
+
+
+// APPLY JOB ELEMENTS
+const applyJobPageModalContent = document.querySelector(".apply-job-page-modal-content");
+const applyJobModalCloseBtn = document.querySelector(".applyJobModalCloseBtn");
+const applyJobForm = document.getElementById("applyJobForm");
+
+const myName = document.getElementById('myName');
+const myEmail = document.getElementById('myEmail');
+const myPhoneNum = document.getElementById('myPhoneNum');
+const myPhoto = document.getElementById('myPhoto');
+
+const answeredQuestionsBtn = document.getElementById('answeredQuestionsBtn');
+
+const questionnairesListUl = document.getElementById('questionnairesListUl');
+const liElement = document.createElement('li');
+const pElement = document.createElement('p');
+const inputElement = document.createElement('input');
+
+const resumeBtn = document.getElementById('resumeBtn');
+const resumePhoto = document.getElementById('resumePhoto');
+const workExperienceSelect = document.getElementById('workExperienceSelect');
+const addressInput = document.getElementById('addressinput');
+const educationInput = document.getElementById('educationinput');
+const driversLicenseBtn = document.getElementById('driversLicenseBtn');
+const licensePhoto = document.getElementById('licensePhoto');
+const addInfoTxtArea = document.getElementById('addInfoTxtArea');
+const submitBtn = document.getElementById('submitBtn');
+
+applyJobForm.addEventListener('submit', processApplication)
+applyJobModalCloseBtn.addEventListener('click', hideApplyJobModal)
+
+function generateUserDetails() {
+    myName.textContent = myData.fullName;
+    myEmail.textContent = myData.email;
+    myPhoneNum.textContent = myData.phoneNum;
+    myPhoto.src = myData.imageUrl;
+}
+
+function generateQuestionsForParticipant() {
+    const questionnaires = tempJobData.questionnaires;
+    questionnairesListUl.innerHTML = '';
+
+    questionnaires.forEach(question => {
+        createQuestionItems(question);
+    });
+}
+
+function createQuestionItems(question) {
+    
+    const liElement = document.createElement('li');
+    const pElement = document.createElement('p');
+    const inputElement = document.createElement('input');
+    inputElement.required = true;
+
+    pElement.textContent = question;
+
+    liElement.appendChild(pElement);
+    liElement.appendChild(inputElement);
+
+    questionnairesListUl.appendChild(liElement);
+}
+
+function processApplication() {
+
+}
+
+function showApplyJobModal() {
+    jobPageModalContent.style.display = 'none';
+    applyJobPageModalContent.style.display = 'flex';
+}
+
+function hideApplyJobModal() {
+    jobPageModalContent.style.display = 'flex';
+    applyJobPageModalContent.style.display = 'none';}

@@ -45,131 +45,143 @@
     <!-- Modal content -->
     <div id="jobPageModal" class="job-page-modal ">
 
-            <div class="job-page-modal-content">
-                <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between;">
-                    <span class="viewJobModalCloseBtn" style="cursor: pointer;">&times;</span>
-                </div>
-                <hr style="height: 2px; background-color: gray;">
-                <h3 id="jobType" style="width: 100%; text-align: center; margin-bottom: 50px;">Bus Job</h3>
-                
-                <div class="job-main-info">
-                    <div class="job-main-info-left">
-                        <h5 id="jobTitle">Bus Conductor Hiring</h5>
-                        <h6 id="company">Pitam</h6>
-                        <h5 id="address"><i class="fa-solid fa-location-dot"></i>Mandaue, Cebu City</h5>
-                        <p id="salary">PHP 10,000 - 15,000</p>
-                        <span id="postedDate">26-Apr-2024</span>
-                        <div style="display: flex; flex-direction: row; gap: 10px;">
-                            <button id="applyBtn">Apply</button>
-                            <button id="saveBtn">Save</button>
-                        </div>
-                    </div>
-    
-                    <img id="companyImage" src="./images/placeholder.png" alt="">
-                </div>
-                <hr style="height: 2px; background-color: gray;">
-                <div class="data-filter" style="margin-bottom: 50px;">
-    
-                    <input type="radio" checked="true" id="jobDescription" name="data" />
-                    <label for="jobDescription">Job Description</label>
-    
-                    <input type="radio" id="aboutCompany" name="data" />
-                    <label for="aboutCompany">About Company</label>
-    
-                    <span class="glider"></span>
-                </div>
-                <div id="jobDescriptionContent">
-                    <div>
-                        <h5>Job Highlights:</h5>
-                        <p id="jobHighligths">Loading...</p>
-                    </div>
-                    <div>
-                        <h5 style="margin-bottom: 15px;">Qualifications:</h5>
-                        <p id="qualifications">Loading...</p>
-                    </div>
-                    <div>
-                        <h5 style="margin-bottom: 15px;">How to apply:</h5>
-                        <p id="instructions">Loading...</p>
+        <div class="job-page-modal-content">
+            <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between;">
+                <span class="viewJobModalCloseBtn" style="cursor: pointer;">&times;</span>
+            </div>
+            <hr style="height: 2px; background-color: gray;">
+            <h3 id="jobType" style="width: 100%; text-align: center; margin-bottom: 50px;">Bus Job</h3>
+
+            <div class="job-main-info">
+                <div class="job-main-info-left">
+                    <h5 id="jobTitle">Bus Conductor Hiring</h5>
+                    <h6 id="company">Pitam</h6>
+                    <h5 id="address"><i class="fa-solid fa-location-dot"></i>Mandaue, Cebu City</h5>
+                    <p id="salary">PHP 10,000 - 15,000</p>
+                    <span id="postedDate">26-Apr-2024</span>
+                    <div style="display: flex; flex-direction: row; gap: 10px;">
+                        <button id="applyBtn">Apply</button>
+                        <button id="saveBtn">Save</button>
                     </div>
                 </div>
-    
-                <div id="aboutCompanyContent">
-                    <article id="aboutCompanyId" style="margin: 15px;">
-                        Loading...
-                    </article>
+
+                <img id="companyImage" src="./images/placeholder.png" alt="">
+            </div>
+            <hr style="height: 2px; background-color: gray;">
+            <div class="data-filter" style="margin-bottom: 50px;">
+
+                <input type="radio" checked="true" id="jobDescription" name="data" />
+                <label for="jobDescription">Job Description</label>
+
+                <input type="radio" id="aboutCompany" name="data" />
+                <label for="aboutCompany">About Company</label>
+
+                <span class="glider"></span>
+            </div>
+            <div id="jobDescriptionContent">
+                <div>
+                    <h5>Job Highlights:</h5>
+                    <p id="jobHighligths">Loading...</p>
+                </div>
+                <div>
+                    <h5 style="margin-bottom: 15px;">Qualifications:</h5>
+                    <p id="qualifications">Loading...</p>
+                </div>
+                <div>
+                    <h5 style="margin-bottom: 15px;">How to apply:</h5>
+                    <p id="instructions">Loading...</p>
                 </div>
             </div>
 
-            <div class="apply-job-page-modal-content">
-                <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between;">
-                    <span class="viewJobModalCloseBtn" style="cursor: pointer;">&times;</span>
-                </div>
-                <hr style="height: 2px; background-color: gray;">
-                <h3 id="jobType" style="width: 100%; text-align: center; margin-bottom: 50px;">Bus Job</h3>
-                <div class="apply-job-main-info">
-                    <div class="apply-job-main-info-left">
-                        <h5 id="myName">Bus Conductor Hiring</h5>
-                        <h6 id="myEmail">Pitam</h6>
-                        <h5 id="myPhoneNum"><i class="fa-solid fa-location-dot"></i>Mandaue, Cebu City</h5>
-                    </div>
-    
-                    <img id="myPhoto" src="./images/placeholder.png" alt="">
-                </div>
-
-                <hr style="height: 2px; background-color: gray;">
-
-                <div id="addBusSchedDiv" style="width: 100%;">
-
-                    <div class="bus-form-container" style="margin-bottom: 15px;" >
-                        <div id="answeredQuestionsBtn" class="column" style="background-color: whitesmoke; display: flex; justify-content: space-between; flex-direction: row;">
-                            <h6>Answered questions from participant</h6>
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </div>
-
-                        <div id="resumeBtn" class="column" style="background-color: whitesmoke; display: flex; justify-content: space-between; flex-direction: row;">
-                            <h6>Resume/Bio Data from the applicant</h6>
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </div>
-                    </div>
-
-                    <div class="bus-form-container" style="margin-bottom: 15px;">
-                        <div class="column" style="background-color: whitesmoke;">
-                            <h4>Work Experience</h4>
-                            <input id="workExperienceinput"></input>
-                        </div>
-
-                        <div class="column" style="background-color: whitesmoke;">
-                            <h4>Address</h4>
-                            <input id="addressinput"></input>
-                        </div>
-                    </div>
-
-                    <div class="bus-form-container" style="margin-bottom: 15px;">
-                        <div class="column" style="background-color: whitesmoke;">
-                            <h4>Education</h4>
-                            <input id="educationinput"></input>
-                        </div>
-
-                        <div id="driversLicenseBtn" class="column" style="background-color: whitesmoke; display: flex; justify-content: space-between; flex-direction: row;">
-                            <h4>Drivers License</h4>
-                            <i class="fa-solid fa-chevron-right"></i>
-
-                        </div>
-                    </div>
-
-                    <div class="bus-form-container" style="margin-bottom: 50px;">
-                        <div class="column" style="background-color: whitesmoke;">
-                            <h4>Additional information for the employer</h4>
-                            <h6 id="addInfoH6">Loading...</h6>
-                        </div>
-                    </div>
-
-                    <div class="bus-form-container" style="margin-bottom: 15px; display: flex; justify-content: space-evenly;">
-                        <button id="approveBtn" style="width: 300px; background-color: green;">Approve</button>
-                        <button id="disapproveBtn" style="width: 300px; background-color: red;">Disapprove</button>
-                    </div> 
-                </div>
+            <div id="aboutCompanyContent">
+                <article id="aboutCompanyId" style="margin: 15px;">
+                    Loading...
+                </article>
             </div>
+        </div>
+
+        <div class="apply-job-page-modal-content">
+            <div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between;">
+                <span class="applyJobModalCloseBtn" style="cursor: pointer;">&times;</span>
+            </div>
+            <hr style="height: 2px; background-color: gray;">
+            <h3 id="jobType" style="width: 100%; text-align: center; margin-bottom: 50px;">Bus Job</h3>
+            <div class="apply-job-main-info">
+                <div class="apply-job-main-info-left">
+                    <h5 id="myName">Loading...</h5>
+                    <h6 id="myEmail">Loading...</h6>
+                    <h5 id="myPhoneNum">Loading...</h5>
+                </div>
+
+                <img id="myPhoto" src="./images/profile.png" alt="">
+            </div>
+
+            <hr style="height: 2px; background-color: gray;">
+
+            <form id="applyJobForm" style="width: 100%;">
+
+                <div class="bus-form-container" style="margin-bottom: 15px;">
+                    <div id="answeredQuestionsBtn" class="column"
+                        style="background-color: whitesmoke; display: flex; flex-direction: column;">
+                        <h6>Answered questions from participant</h6>
+                        <ul id="questionnairesListUl">
+                        </ul>
+                    </div>
+
+
+                    <div id="resumeBtn" class="column"
+                        style="background-color: whitesmoke; display: flex; justify-content: space-between; flex-direction: column;">
+                        <h6>Resume/Bio Data from the applicant</h6>
+                        <img id="resumePhoto" src="./images/placeholder.png" alt="files">
+                        <input type="file" required>
+                    </div>
+                </div>
+
+                <div class="bus-form-container" style="margin-bottom: 15px;">
+                    <div class="column" style="background-color: whitesmoke;">
+                        <h4>Work Experience</h4>
+                        <select name="workExperienceSelect" id="workExperienceSelect">
+                            <option value="">No Work Experience</option>
+                            <option value="">Below 5 years</option>
+                            <option value="">6-11 years</option>
+                            <option value="">12-17 years</option>
+                            <option value="">18-23 years</option>
+                        </select>
+                    </div>
+
+                    <div class="column" style="background-color: whitesmoke;">
+                        <h4>Address</h4>
+                        <input id="addressinput" required></input>
+                    </div>
+                </div>
+
+                <div class="bus-form-container" style="margin-bottom: 15px;">
+                    <div class="column" style="background-color: whitesmoke;">
+                        <h4>Education</h4>
+                        <input id="educationinput" required></input>
+                    </div>
+
+                    <div id="driversLicenseBtn" class="column"
+                        style="background-color: whitesmoke; display: flex; justify-content: space-between; flex-direction: column;">
+                        <h4>Drivers License</h4>
+                        <img id="licensePhoto" src="./images/placeholder.png" alt="files">
+                        <input type="file" required>
+                    </div>
+                </div>
+
+                <div class="bus-form-container" style="margin-bottom: 50px;">
+                    <div class="column" style="background-color: whitesmoke;">
+                        <h4>Additional information for the employer</h4>
+                        <textarea name="" id="addInfoTxtArea" cols="30" rows="10" placeholder="Write Here"></textarea>
+                    </div>
+                </div>
+
+                <div class="bus-form-container"
+                    style="margin-bottom: 15px; display: flex; justify-content: space-evenly;">
+                    <button id="submitBtn" type="submit">Submit Application</button>
+                </div>
+            </form>
+        </div>
 
     </div>
 

@@ -94,6 +94,7 @@
     width: 80%;
     padding: 15px;
     align-items: start;
+    overflow: auto;
     height: calc(100vh - 10vh);
 }
 
@@ -303,4 +304,43 @@
     align-self: flex-start;
     width: 100%;
 
+}
+
+#workExperienceSelect {
+    padding: 5px;
+}
+
+#applyJobForm h6,
+#applyJobForm h4 {
+    margin-bottom: 15px;
+}
+
+#questionnairesListUl {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#questionnairesListUl > li {
+
+}
+
+#resumePhoto,
+#licensePhoto {
+    height: fit-content;
+    width: fit-content;
+    max-height: 150px;
+    max-width: 200px;
+}
+
+#submitBtn {
+    width: 80%; 
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    background-color: #6c7ba0;
+}
+
+#addInfoTxtArea {
+    padding: 10px;
 }
