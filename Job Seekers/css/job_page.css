@@ -45,7 +45,7 @@
 }
 
 .job-page-modal {
-    display: none;
+    /* display: none; */
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
@@ -71,7 +71,7 @@
 
 /* Modal Content */
 .job-page-modal-content {
-    display: flex;
+    display: none; 
     align-items: center;
     flex-direction: column;
     background-color: #fefefe;
@@ -84,12 +84,33 @@
 
 }
 
+.apply-job-page-modal-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 80%;
+    padding: 15px;
+    align-items: start;
+    height: calc(100vh - 10vh);
+}
+
 .job-main-info {
    display: flex;
    justify-content: space-between;
    flex-direction: row;
    width: 100%;
    margin-bottom: 10px;
+}
+
+.apply-job-main-info {
+   display: flex;
+   flex-direction: row;
+   width: 100%;
+   margin-bottom: 10px;
+   align-items: center;
 }
 
 .job-main-info-left {
@@ -102,10 +123,26 @@
     justify-content: space-evenly;
 }
 
+.apply-job-main-info-left {
+    height: auto;
+    width: fit-content;
+    flex: 1;
+    display: flex;
+    margin-right: 20px;
+    flex-direction: column;
+    gap: 10px;
+}
+
 #companyImage {
     max-height: 300px;
     max-width: 400px;
     flex: 1;
+}
+
+#myPhoto {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
 }
 
 
@@ -227,4 +264,43 @@
 #jobDescriptionContent p {
     margin-bottom: 5px;
     font-size: 12px;
+}
+
+.bus-form-container {
+    margin: 0 auto;
+    display: flex; /* Display form as flex container */
+    justify-content: center;
+    gap: 10px;
+}
+
+.bus-form-container .column {
+    flex: 1;
+    padding: 10px;
+    display: flex; /* Display each column as flex container */
+    flex-direction: column; /* Align items vertically */
+}
+
+.bus-form-container label {
+    margin-bottom: 10px;
+}
+
+.bus-form-container input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bus-form-container .column:first-child {
+    padding-right: 30px;
+}
+
+.bus-form-container .column input {
+    width: 100%;
+}
+
+.bus-form-container .column label {
+    align-self: flex-start;
+    width: 100%;
+
 }

@@ -10,6 +10,22 @@ const jobContainer = document.querySelector(".job-container");
 const jobPageModal = document.getElementById("jobPageModal");
 const viewJobModalCloseBtn = document.querySelector(".viewJobModalCloseBtn");
 
+
+const jobType = document.getElementById('jobType');
+const jobTitle = document.getElementById('jobTitle');
+const company = document.getElementById('company');
+const address = document.getElementById('address');
+const salary = document.getElementById('salary');
+const postedDate = document.getElementById('postedDate');
+const companyImage = document.getElementById('companyImage');
+const applyBtn = document.getElementById('applyBtn');
+const saveBtn = document.getElementById('saveBtn');
+
+const jobHighligths = document.getElementById('jobHighligths');
+const qualifications = document.getElementById('qualifications');
+const instructions = document.getElementById('instructions');
+const aboutCompanyId = document.getElementById('aboutCompanyId');
+
 // Get references to radio buttons and content divs
 const jobDescriptionRadio = document.getElementById("jobDescription");
 const aboutCompanyRadio = document.getElementById("aboutCompany");
@@ -17,24 +33,16 @@ const aboutCompanyRadio = document.getElementById("aboutCompany");
 const jobDescriptionContent = document.getElementById("jobDescriptionContent");
 const aboutCompanyContent = document.getElementById("aboutCompanyContent");
 
-const jobType = document.getElementById('jobType'); 
-const jobTitle = document.getElementById('jobTitle'); 
-const company = document.getElementById('company'); 
-const address = document.getElementById('address'); 
-const salary = document.getElementById('salary'); 
-const postedDate = document.getElementById('postedDate'); 
-const companyImage = document.getElementById('companyImage'); 
-const jobHighligths = document.getElementById('jobHighligths'); 
-const qualifications = document.getElementById('qualifications'); 
-const instructions = document.getElementById('instructions'); 
-const aboutCompanyId = document.getElementById('aboutCompanyId'); 
-
 let jobArray;
 let questionnaireArray;
+let tempBookmarkIcon;
+let tempJobData;
 
 document.addEventListener('DOMContentLoaded', init);
 jobDescriptionRadio.addEventListener('change', updateContent);
 aboutCompanyRadio.addEventListener('change', updateContent);
+applyBtn.addEventListener('click', goToApplyPage);
+saveBtn.addEventListener('click', bookmarkJobInViewJobPage);
 viewJobModalCloseBtn.addEventListener('click', hideViewJobModal);
 
 
@@ -120,7 +128,7 @@ function createJobCard(jobData) {
     })
 
     jobTitle.addEventListener('click', function () {
-        viewJob(jobData);
+        viewJob(jobData, bookmarkIcon);
     })
 }
 
@@ -143,7 +151,26 @@ function bookmarkJob(jobData, bookmarkIcon) {
     }
 }
 
-function checkIfBookmarked(jobId, bookmarkIcon) {
+function bookmarkJobInViewJobPage() {
+
+    const isBookmarked = saveBtn.style.backgroundColor === 'rgb(67, 138, 85)';
+    console.log(saveBtn.style.backgroundColor);
+
+    if (!isBookmarked) {
+        console.log('no bookmark');
+        addInBookmark(tempJobData, tempBookmarkIcon);
+    }
+    else if (isBookmarked) {
+        console.log('bookmark');
+        getBookmarkId(tempJobData, tempBookmarkIcon);
+    }
+
+    saveBtn.style.backgroundColor = !isBookmarked ? '#438a55' : '#ababab';
+    saveBtn.textContent = !isBookmarked ? 'Unsave' : 'Save';
+
+}
+
+function checkIfBookmarked(jobId, icon) {
     const ref = database.ref(`${DBPaths.BOOKMARK_JOBS}`);
 
     // Use 'once' to get the value once, and then resolve the promise
@@ -151,9 +178,10 @@ function checkIfBookmarked(jobId, bookmarkIcon) {
         snapshot.forEach(data => {
             const bookmarkData = data.val();
             const userId = bookmarkData.userId;
-            const jobId = bookmarkData.jobId;
-            const isBookmarked = userId === myData.key && jobId === jobId;
-            bookmarkIcon.style.color = isBookmarked ? '#438a55' : '#000000';
+            const bookmarkJobId = bookmarkData.jobId;
+            const isBookmarked = userId === myData.key && bookmarkJobId === jobId;
+
+            icon.style.color = isBookmarked ? '#438a55' : '#000000';
 
         })
     }, (error) => {
@@ -161,7 +189,6 @@ function checkIfBookmarked(jobId, bookmarkIcon) {
     });
 }
 
-// function getBookmarkedId
 function addInBookmark(job, bookmarkIcon) {
     const bookmarkData = {
         bookmarkDate: getFormattedDate(),
@@ -216,7 +243,10 @@ function removeAsBookmarked(bookmarkId, bookmarkIcon) {
 }
 
 
-function viewJob(jobData) {
+function viewJob(jobData, bookmarkIcon) {
+    tempBookmarkIcon = bookmarkIcon;
+    tempJobData = jobData;
+
     jobType.textContent = jobData.jobType;
     jobTitle.textContent = jobData.title;
     company.textContent = jobData.company;
@@ -228,6 +258,11 @@ function viewJob(jobData) {
     qualifications.textContent = jobData.qualifications;
     instructions.textContent = jobData.applicationInstructions;
     aboutCompanyId.textContent = jobData.aboutCompany;
+
+    const isBookmarked = bookmarkIcon.style.color === 'rgb(67, 138, 85)';
+    saveBtn.style.backgroundColor = isBookmarked ? '#438a55' : '#ababab';
+    saveBtn.textContent = isBookmarked ? 'Unsave' : 'Save';
+
     showViewJobModal();
 }
 
@@ -247,6 +282,9 @@ function getFormattedDate() {
     return formattedDate;
 }
 
+function goToApplyPage() {
+    alert('apply page')
+}
 
 // Function to initialize the radio filter and set up event listeners
 // Function to show/hide content based on selected radio button
