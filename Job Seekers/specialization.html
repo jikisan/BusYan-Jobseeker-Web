@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,12 @@
     <link rel="stylesheet" href="./../common.css" />
 
 </head>
+
 <body>
     <div class="top-pane">
-        <div><h2>BusYan</h2></div>
+        <div>
+            <h2>BusYan</h2>
+        </div>
         <div class="menu-icon">
             <a href="#"><i class="fa-solid fa-house"></i></a>
             <a href="#"><i class="fa-solid fa-bell"></i></a>
@@ -20,19 +24,35 @@
     </div>
 
     <hr style="margin: 0px 20px 50px 20px">
-    
+
     <!-- <div style="display: flex; justify-content: center;">
         <input id="searchInput" type="text" class="search-bar" placeholder="Search" />
     </div>    -->
-    
+
     <h2 style="margin-left: 10px;">Specializations</h2>
     <div class="specializations-container">
-        <div id="busDriverBtn" class="specializations-card"><p>Bus Driver</p></div>
-        <div id="busConductorBtn" class="specializations-card"><p>Bus Conductor</p></div>
+        <div id="busDriverBtn" class="specializations-card">
+            <p>Bus Driver</p>
+        </div>
+        <div id="busConductorBtn" class="specializations-card">
+            <p>Bus Conductor</p>
+        </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js "></script>
-    <script src="./js/job-page.js" type="module"></script>
+    <script>
+        const busDriverBtn = document.getElementById('busDriverBtn');
+        const busConductorBtn = document.getElementById('busConductorBtn');
+
+        busDriverBtn.addEventListener('click', goToJobPage);
+        busConductorBtn.addEventListener('click', goToJobPage);
+
+        function goToJobPage() {
+            window.location.href = '/Job Seekers/job-page.html';
+        }
+        
+    </script>
 
 </body>
+
 </html>

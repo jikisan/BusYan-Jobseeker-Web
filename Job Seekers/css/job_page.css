@@ -39,3 +39,192 @@
 .job-container>.job-card>span {
     color: lightgray;
 }
+
+.fa-bookmark {
+    cursor: pointer;
+}
+
+.job-page-modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 50px;
+    /* Location of the box */
+    padding-bottom: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+
+/* Modal Content */
+.job-page-modal-content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 80%;
+    padding: 15px;
+    align-items: start;
+    height: calc(100vh - 10vh);
+
+}
+
+.job-main-info {
+   display: flex;
+   justify-content: space-between;
+   flex-direction: row;
+   width: 100%;
+   margin-bottom: 10px;
+}
+
+.job-main-info-left {
+    height: auto;
+    width: fit-content;
+    flex: 1;
+    display: flex;
+    margin-right: 20px;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#companyImage {
+    max-height: 300px;
+    max-width: 400px;
+    flex: 1;
+}
+
+
+.job-main-info>div>h5>i {
+    margin-right: 5px;
+}
+
+.job-main-info>div>span {
+    font-size: 14px;
+}
+
+.job-main-info>div>p {
+    background-color: #b2eda3;
+    font-weight: bold;
+    width: fit-content;
+}
+
+.job-main-info>div>span {
+    color: lightgray;
+}
+
+#applyBtn,
+#saveBtn {
+    color: whitesmoke;
+    padding: 5px;
+    border: none;
+}
+
+#applyBtn {
+    flex: 1;
+    background-color: #6c7ba0;
+}
+
+#saveBtn {
+    flex: 1;
+    background-color: #ababab;
+}
+
+.data-filter {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.data-filter input[id="jobDescription"]:checked~.glider {
+    transform: translateX(-50%);
+}
+
+.data-filter input[id="aboutCompany"]:checked~.glider {
+    transform: translateX(50%);
+}
+
+
+.data-filter .glider {
+    position: absolute;
+    display: flex;
+    height: 2px;
+    width: 60%;
+    background-color: rgb(148, 136, 166);
+    z-index: 1;
+    transition: 0.25s ease-out;
+    bottom: -10px;
+}
+
+
+.data-filter input[type="radio"] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+
+.data-filter input[type="radio"]:checked+label {
+    color: black;
+}
+
+.data-filter input[type="radio"]:checked+label {
+    color: black;
+}
+
+.data-filter label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 18px;
+    width: calc(100% / 2);
+    cursor: pointer;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 31px;
+    transition: color 0.15s ease-in;
+    color: lightgray;
+}
+
+#jobDescriptionContent {   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    height: 100%;
+    overflow: auto;
+}
+
+#aboutCompanyContent {   
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    height: 100%;
+}
+
+#jobDescriptionContent h5 {
+    margin-bottom: 10px;
+}
+
+#jobDescriptionContent p {
+    margin-bottom: 5px;
+    font-size: 12px;
+}
