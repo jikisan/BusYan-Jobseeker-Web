@@ -20,7 +20,6 @@ function loginUser(event) {
             // User successfully signed in
             const uid = userCredential.uid;
             saveDataInLocalStorage(uid);
-            alert('Logged in!');
             // Handle successful login
         })
         .catch((error) => {

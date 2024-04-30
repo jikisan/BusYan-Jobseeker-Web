@@ -45,7 +45,7 @@
 }
 
 .job-page-modal {
-    /* display: none; */
+    display: none;
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
@@ -71,7 +71,7 @@
 
 /* Modal Content */
 .job-page-modal-content {
-    display: none; 
+    display: flex; 
     align-items: center;
     flex-direction: column;
     background-color: #fefefe;
@@ -85,7 +85,7 @@
 }
 
 .apply-job-page-modal-content {
-    display: flex;
+    display: none;
     align-items: center;
     flex-direction: column;
     background-color: #fefefe;
@@ -129,6 +129,7 @@
     width: fit-content;
     flex: 1;
     display: flex;
+    margin-left: 50px;
     margin-right: 20px;
     flex-direction: column;
     gap: 10px;
@@ -144,6 +145,7 @@
     height: 100px;
     width: 100px;
     border-radius: 100%;
+    margin-right: 50px;
 }
 
 

@@ -37,20 +37,34 @@
         <div id="busConductorBtn" class="specializations-card">
             <p>Bus Conductor</p>
         </div>
+        <div id="viewAll" class="specializations-card">
+            <p>View All</p>
+        </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js "></script>
+    <script src="./js/home.js" type="module"></script>
     <script>
         const busDriverBtn = document.getElementById('busDriverBtn');
         const busConductorBtn = document.getElementById('busConductorBtn');
+        const viewAll = document.getElementById('viewAll');
 
-        busDriverBtn.addEventListener('click', goToJobPage);
-        busConductorBtn.addEventListener('click', goToJobPage);
+        busDriverBtn.addEventListener('click', function() {
+            goToJobPage('Bus Driver')
+        });
+        busConductorBtn.addEventListener('click', function() {
+            goToJobPage('Bus Conductor')
+        });
 
-        function goToJobPage() {
+        function goToJobPage(jobType) {
+            sessionStorage.setItem('searchQuery', jobType);
             window.location.href = '/Job Seekers/job-page.html';
         }
-        
+
+        viewAll.addEventListener('click', function() {
+            goToJobPage('')
+        });
+
     </script>
 
 </body>

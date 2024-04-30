@@ -14,6 +14,50 @@ body {
     flex-direction: column;
 }
 
+.loader-container {
+  display: none;
+  justify-content: center;
+  position: fixed;
+  /* Stay in place */
+  z-index: 99;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.loader {
+  align-self: center;
+  width: 70px;
+  height: 70px;
+  border: 10px solid #FFF;
+  border-bottom-color: #6b2fc5;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
 .top-pane {
   display: flex;
   flex-direction: row;

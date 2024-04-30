@@ -1,4 +1,4 @@
-import { convertToMilitaryTime, convertTo12Hour, convertToPascal, getCurrentDateTimeInMillis } from '../../utils/Utils.js';
+import { getFormattedDateTime, convertTo12Hour, convertToPascal, getCurrentDateTimeInMillis } from '../../utils/Utils.js';
 import { DBPaths } from './DB.js';
 import firebaseConfig from '/CONFIG.js';
 
@@ -11,8 +11,9 @@ const jobPageModal = document.getElementById("jobPageModal");
 const jobPageModalContent = document.querySelector(".job-page-modal-content");
 const viewJobModalCloseBtn = document.querySelector(".viewJobModalCloseBtn");
 
-
+const searchJobsInput = document.getElementById('searchJobsInput');
 const jobType = document.getElementById('jobType');
+const jobType2 = document.getElementById('jobType2');
 const jobTitle = document.getElementById('jobTitle');
 const company = document.getElementById('company');
 const address = document.getElementById('address');
@@ -45,16 +46,33 @@ aboutCompanyRadio.addEventListener('change', updateContent);
 applyBtn.addEventListener('click', goToApplyPage);
 saveBtn.addEventListener('click', bookmarkJobInViewJobPage);
 viewJobModalCloseBtn.addEventListener('click', hideViewJobModal);
-
+searchJobsInput.addEventListener('input', handleSearchJob);
 
 function init() {
     if (myData === undefined || myData === null) {
-        window.location.href = './../../login.html'; // Redirect if credentials match
+        window.location.href = './../../login.html';  
     }
+
     generateJobs();
+
 };
 
+function handleSearchJob() {
+    const searchTerm = searchJobsInput.value.toLowerCase().trim();
+    const results = jobArray.filter(item => {
+        return item.title.toLowerCase().includes(searchTerm);
+    });
+    jobContainer.innerHTML = '';
+    results.forEach(result => {
+        createJobCard(result);
+    });
+}
+
 function generateJobs() {
+
+    const searchText = sessionStorage.getItem('searchQuery'); 
+    searchJobsInput.value = searchText; 
+
     const jobRef = database.ref(`${DBPaths.JOB}`);
     jobArray = [];
     questionnaireArray = [];
@@ -67,9 +85,18 @@ function generateJobs() {
                 const jobKey = job.key;
                 const jobData = job.val();
                 jobData["key"] = jobKey;
-                jobArray.push(jobData);
 
-                createJobCard(jobData);
+                if (searchText) {
+                    if ( searchText === jobData.jobType) {
+                        createJobCard(jobData);
+                        jobArray.push(jobData);
+                    }
+                }
+                else {
+                    createJobCard(jobData);
+                    jobArray.push(jobData);
+
+                }
             });
         }
     )
@@ -252,6 +279,7 @@ function viewJob(jobData, bookmarkIcon) {
     tempJobData = jobData;
 
     jobType.textContent = jobData.jobType;
+    jobType2.textContent = jobData.jobType;
     jobTitle.textContent = jobData.title;
     company.textContent = jobData.company;
     address.textContent = jobData.location;
@@ -287,6 +315,15 @@ function getFormattedDate() {
 }
 
 function goToApplyPage() {
+
+    resumePhoto.src = '/Job Seekers/images/placeholder.png'
+    resumePhotoBtn.value = ''
+    addressInput.value = ''
+    educationInput.value = ''
+    licensePhoto.src = '/Job Seekers/images/placeholder.png'
+    licensePhotoBtn.value = ''
+    addInfoTxtArea.value = ''
+
     generateUserDetails();
     generateQuestionsForParticipant();
     showApplyJobModal();
@@ -333,13 +370,21 @@ const inputElement = document.createElement('input');
 
 const resumeBtn = document.getElementById('resumeBtn');
 const resumePhoto = document.getElementById('resumePhoto');
+const resumePhotoBtn = document.getElementById('resumePhotoBtn');
 const workExperienceSelect = document.getElementById('workExperienceSelect');
 const addressInput = document.getElementById('addressinput');
 const educationInput = document.getElementById('educationinput');
 const driversLicenseBtn = document.getElementById('driversLicenseBtn');
 const licensePhoto = document.getElementById('licensePhoto');
+const licensePhotoBtn = document.getElementById('licensePhotoBtn');
 const addInfoTxtArea = document.getElementById('addInfoTxtArea');
 const submitBtn = document.getElementById('submitBtn');
+
+let answersArray
+let fileNameResumePhoto
+let fileResumePhoto
+let fileNameLicensePhoto
+let fileLicensePhoto
 
 applyJobForm.addEventListener('submit', processApplication)
 applyJobModalCloseBtn.addEventListener('click', hideApplyJobModal)
@@ -361,10 +406,15 @@ function generateQuestionsForParticipant() {
 }
 
 function createQuestionItems(question) {
-    
+
     const liElement = document.createElement('li');
+    liElement.classList.add('questions-list')
+
     const pElement = document.createElement('p');
+    pElement.classList.add('questions-p')
+
     const inputElement = document.createElement('input');
+    inputElement.classList.add('questions-inputs')
     inputElement.required = true;
 
     pElement.textContent = question;
@@ -375,8 +425,136 @@ function createQuestionItems(question) {
     questionnairesListUl.appendChild(liElement);
 }
 
-function processApplication() {
+function processApplication(event) {
+    event.preventDefault()
 
+    const isConfirmed = window.confirm("Are you sure all information are correct?");
+
+    if (isConfirmed) {
+        uploadResumePhoto()
+    }
+}
+
+function uploadResumePhoto() {
+    const ref = firebase.storage().ref(`${DBPaths.APPLICATIONS}`);
+
+    const metadata = {
+        contentType: fileResumePhoto.type
+    };
+
+    const task = ref.child(fileNameResumePhoto).put(fileResumePhoto, metadata);
+
+    // Monitor the upload progress
+    task.on('state_changed',
+        function (snapshot) {
+            // Handle progress
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload resume photo is ' + progress + '% done');
+        },
+        function (error) {
+            // Handle errors
+            console.error('Error uploading file: ', error);
+        },
+        function () {
+            // Handle successful upload
+            task.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                console.log(downloadURL);
+
+                uploadLicensePhoto(downloadURL)
+
+            });
+        }
+    );
+}
+
+function uploadLicensePhoto(resumeURL) {
+    const ref = firebase.storage().ref(`${DBPaths.APPLICATIONS}`);
+
+    const metadata = {
+        contentType: fileLicensePhoto.type
+    };
+
+    const task = ref.child(fileNameLicensePhoto).put(fileLicensePhoto, metadata);
+
+    // Monitor the upload progress
+    task.on('state_changed',
+        function (snapshot) {
+            // Handle progress
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload resume photo is ' + progress + '% done');
+        },
+        function (error) {
+            // Handle errors
+            console.error('Error uploading file: ', error);
+        },
+        function () {
+            // Handle successful upload
+            task.snapshot.ref.getDownloadURL().then(function (licenseUrl) {
+                console.log(licenseUrl);
+
+                saveDataInDb(resumeURL, licenseUrl)
+
+            });
+        }
+    );
+}
+
+function saveDataInDb(resumeURL, licenseUrl) {
+
+    const applicationData = {
+        additionalInfo: addInfoTxtArea.value,
+        address: addressInput.value,
+        applicantId: myData.key,
+        applicationDateCreated: getFormattedDateTime(),
+        educationalAttainment: educationInput.value,
+        jobId: tempJobData.key,
+        latitude: 'N/A',
+        licenseUrl: licenseUrl,
+        longitude: 'N/A',
+        profileUrl: myData.imageUrl,
+        resumeUrl: resumeURL,
+        status: 'pending',
+        workExperience: workExperienceSelect.options[workExperienceSelect.selectedIndex].textContent,
+        qaSets: getAnswers(),
+    }
+
+
+    const id = getCurrentDateTimeInMillis();
+
+    const ref = database.ref(`${DBPaths.APPLICATIONS}/${id}`);
+
+    ref.set(applicationData)
+        .then(() => {
+            alert('Application Sent!!')
+            hideApplyJobModal()
+        })
+        .catch(error => {
+            // An error occurred while setting data
+            console.error('Error setting data:', error);
+        });
+
+}
+
+function getAnswers() {
+    const ulElement = document.getElementById('questionnairesListUl');
+    const liElements = ulElement.getElementsByClassName('questions-list');
+    answersArray = []
+
+    for (const li of liElements) {
+        const p = li.querySelector('.questions-p'); // Get the input inside this 'li'
+        const dataArray = []
+
+        const input = li.querySelector('.questions-inputs'); // Get the input inside this 'li'
+        if (input) {
+            dataArray.push(p.textContent)
+            dataArray.push(input.value)
+            answersArray.push(dataArray)
+        }
+    }
+    console.log(answersArray)
+    console.log(typeof (answersArray))
+
+    return answersArray
 }
 
 function showApplyJobModal() {
@@ -386,4 +564,34 @@ function showApplyJobModal() {
 
 function hideApplyJobModal() {
     jobPageModalContent.style.display = 'flex';
-    applyJobPageModalContent.style.display = 'none';}
+    applyJobPageModalContent.style.display = 'none';
+}
+
+window.addEventListener('load', function () {
+
+    resumePhotoBtn.addEventListener('change', function (event) {
+        if (this.files && this.files[0]) {
+            resumePhoto.onload = () => {
+                URL.revokeObjectURL(resumePhoto.src);
+            }
+            resumePhoto.src = URL.createObjectURL(this.files[0]);
+            fileNameResumePhoto = this.files[0].name;
+            fileResumePhoto = event.target.files[0];
+        }
+    });
+});
+
+window.addEventListener('load', function () {
+
+    licensePhotoBtn.addEventListener('change', function (event) {
+
+        if (this.files && this.files[0]) {
+            licensePhoto.onload = () => {
+                URL.revokeObjectURL(licensePhoto.src);
+            }
+            licensePhoto.src = URL.createObjectURL(this.files[0]);
+            fileNameLicensePhoto = this.files[0].name;
+            fileLicensePhoto = event.target.files[0];
+        }
+    });
+});
