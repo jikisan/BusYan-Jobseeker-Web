@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="./css/help_center.css" />
+    <link rel="stylesheet" href="./../common.css" />
+
+</head>
+
+<body>
+    <div class="top-pane">
+        <div>
+            <h2><span class="logo">BY</span>BusYan</h2>
+        </div>
+        <div class="menu-icon">
+
+            <a href="#"><i class="fa-solid fa-house"></i></a>
+            <a href="#"><i class="fa-solid fa-bell"></i></a>
+            <a href="#"><i class="fa-solid fa-user"></i></a>
+            <div id="custom-popup" class="popup">
+                <div style="display: flex; flex-direction: row; gap: 10px;">
+                    <img src="/Job Seekers/images/profile.png" alt="" class="profile-img">
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <h5 id="profileName">Loading...</h5>
+                        <p id="profileEmail">Loading...</p>
+                        <button id="editProfileBtn">Edit profile</button>
+                    </div>
+                </div>
+                <hr>
+                <span id="profileSavedJob" class="menu-item">Saved Job</span>
+                <span id="profileAboutUs" class="menu-item">About Us</span>
+                <span id="profileHelpCenter" class="menu-item">Help Center</span>
+                <hr>
+                <span id="profileLogout" class="menu-item">Logout</span>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <hr style="margin: 0px 20px 50px 20px">
+
+    <div style="display: flex; justify-content: center; flex-direction: column; text-align: center;">
+        <h2 style="margin-bottom: 50px;">Help Center</h2>
+        <div class="container">
+            <div class="main">
+                <p class="title">Frequently Asked Questions (FAQs)</p>
+                <div class="questions-container">
+
+                    <div class="question-container">
+                        <div class="question">
+                            <p>How to track a bus?</p>
+                            <button type="button" class="question-button">
+                                <span class="show-answer"><i class="fas fa-angle-down"></i></span>
+                                <span class="hide-answer"><i class="fas fa-angle-up"></i></span>
+                            </button>
+                        </div>
+                        <div class="answer">
+                            <p>To track a bus, open the manage bus and go to bus tracking, make sure your bus driver’s
+                                location are activated for you to be able to track their location. Once you open the
+                                map,
+                                you can automatically see the pin locations of different bus driver at different routes.
+                                Just click each bus icon and it will display its details such as its current location
+                                and the name of the bus driver.</p>
+                        </div>
+                    </div>
+
+                    <div class="question-container">
+                        <div class="question">
+                            <p>How to search a job?</p>
+                            <button type="button" class="question-button">
+                                <span class="show-answer"><i class="fas fa-angle-down"></i></span>
+                                <span class="hide-answer"><i class="fas fa-angle-up"></i></span>
+                            </button>
+                        </div>
+                        <div class="answer">
+                            <p></p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <ul class="notif-ul">
+    </ul>
+
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js "></script>
+    <script src="./js/home.js" type="module"></script>
+    <script>
+        const questionContainers = document.querySelectorAll('.question-container');
+
+        questionContainers.forEach(container => {
+            const question = container.querySelector('.question');
+            const answer = container.querySelector('.answer');
+
+            question.addEventListener('click', function () {
+                container.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

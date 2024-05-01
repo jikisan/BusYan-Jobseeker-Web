@@ -27,6 +27,8 @@ notification.addEventListener('click', goToNotifpage)
 profile.addEventListener('click', manageProfileMenu)
 editProfileButton.addEventListener('click', goToProfilePage)
 profileSavedJob.addEventListener('click', goToSavedJobsPage)
+profileAboutUs.addEventListener('click', goToAboutUsPage)
+profileHelpCenter.addEventListener('click', goToHelpCenterPage)
 profileLogout.addEventListener('click', logOut)
 
 function init() {
@@ -62,6 +64,14 @@ function goToSavedJobsPage() {
     window.location.href = '/Job Seekers/saved-job.html';
 }
 
+function goToAboutUsPage() {
+    window.location.href = '/Job Seekers/about-us.html';
+}
+
+function goToHelpCenterPage() {
+    window.location.href = '/Job Seekers/help-center.html';
+}
+
 function manageProfileMenu() {
     if (customPopup) {
         const currentDisplay = customPopup.style.display;
@@ -70,14 +80,19 @@ function manageProfileMenu() {
 }
 
 function logOut() {
-    firebase.auth().signOut()
-    .then(() => {
-        alert('User logged out successfully');
-        window.location.href = '/login.html';
-    })
-    .catch((error) => {
-        alert('Error during logout:', error);
-    });
+
+    const isConfirmed = window.confirm("Are you sure you want to logout?");
+    
+    if (isConfirmed) {
+        firebase.auth().signOut()
+        .then(() => {
+            alert('User logged out successfully');
+            window.location.href = '/login.html';
+        })
+        .catch((error) => {
+            alert('Error during logout:', error);
+        });
+    }
 }
 
 function show() {
