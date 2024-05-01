@@ -1,4 +1,5 @@
 export const DBPaths = {
+    ADMIN: 'Admin',
     APPLICATIONS: 'Applications',
     PASSENGER: 'Passengers',
     BOOKMARK_JOBS: 'BookmarkJobs',
@@ -11,9 +12,9 @@ export const DBPaths = {
     EMPLOYEES: 'Employees',
     EMPLOYEES_REPORTS: 'EmployeesReports',
     EMPLOYEES_PAY_STATEMENTS: 'EmployeesPayStatements',
-    ADMIN: 'Admin',
     JOB: 'Jobs',
     LOGIN_NOTIF: 'LoginNotification',
     LIVE_DRIVERS: 'LiveDrivers',
     LIVE_PASSENGERS: 'LivePassengers',
+    NOTIFICATIONS: 'Notifications'
 }

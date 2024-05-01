@@ -1,0 +1,37 @@
+#editProfileImg {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+#editProfileImgBtn {
+    margin-bottom: 50px;
+}
+
+#profileForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
+    gap: 10px;
+}
+
+#editProfileName,
+#editProfileEmail,
+#editProfilePhoneNum {
+    height: 20px;
+    padding: 10px;
+    color: #000;
+}
+
+#editProfilePhoneNum {
+    margin-bottom: 50px;
+}
+
+#updateProfileBtn {
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    background-color: #8b819a;
+    border: none;
+}

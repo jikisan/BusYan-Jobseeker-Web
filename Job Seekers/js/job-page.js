@@ -2,7 +2,7 @@ import { getFormattedDateTime, convertTo12Hour, convertToPascal, getCurrentDateT
 import { DBPaths } from './DB.js';
 import firebaseConfig from '/CONFIG.js';
 
-firebase.initializeApp(firebaseConfig);
+// firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 const myData = JSON.parse(sessionStorage.getItem('currentUser'));
 

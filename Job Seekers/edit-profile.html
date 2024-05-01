@@ -4,19 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Notification</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <link rel="stylesheet" href="./css/specialization.css" />
+    <link rel="stylesheet" href="./css/edit_profile.css" />
     <link rel="stylesheet" href="./../common.css" />
 
 </head>
 
 <body>
+    <div class="loader-container">
+        <div class="loader"></div>
+    </div>
+    
     <div class="top-pane">
         <div>
             <h2>BusYan</h2>
         </div>
         <div class="menu-icon">
+            
             <a href="#"><i class="fa-solid fa-house"></i></a>
             <a href="#"><i class="fa-solid fa-bell"></i></a>
             <a href="#"><i class="fa-solid fa-user"></i></a>
@@ -35,55 +40,34 @@
                 <span id="profileHelpCenter" class="menu-item">Help Center</span>
                 <hr >
                 <span id="profileLogout" class="menu-item">Logout</span>
-    
+
             </div>
-        </div>
-       
+        </div>        
     </div>
+
+    
 
     <hr style="margin: 0px 20px 50px 20px">
 
-    <!-- <div style="display: flex; justify-content: center;">
-        <input id="searchInput" type="text" class="search-bar" placeholder="Search" />
-    </div>    -->
+    <div style="display: flex; justify-content: center; margin-bottom: 50px;">
+        <h2>Profile</h2>
+    </div>   
 
-    <h2 style="margin-left: 10px;">Specializations</h2>
-    <div class="specializations-container">
-        <div id="busDriverBtn" class="specializations-card">
-            <p>Bus Driver</p>
-        </div>
-        <div id="busConductorBtn" class="specializations-card">
-            <p>Bus Conductor</p>
-        </div>
-        <div id="viewAll" class="specializations-card">
-            <p>View All</p>
-        </div>
+    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+        <img id="editProfileImg" src="/Job Seekers/images/profile.png" alt="">
+        <input id="editProfileImgBtn" type="file">
+        <form id="profileForm" >
+            <input id="editProfileName" type="text" required>
+            <input id="editProfileEmail" type="text" disabled>
+            <input id="editProfilePhoneNum" type="text" required>
+            <button id="updateProfileBtn">Update Profile</button>
+        </form>
     </div>
+
 
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js "></script>
     <script src="./js/home.js" type="module"></script>
-    <script>
-        const busDriverBtn = document.getElementById('busDriverBtn');
-        const busConductorBtn = document.getElementById('busConductorBtn');
-        const viewAll = document.getElementById('viewAll');
-
-        busDriverBtn.addEventListener('click', function() {
-            goToJobPage('Bus Driver')
-        });
-        busConductorBtn.addEventListener('click', function() {
-            goToJobPage('Bus Conductor')
-        });
-
-        function goToJobPage(jobType) {
-            sessionStorage.setItem('searchQuery', jobType);
-            window.location.href = '/Job Seekers/job-page.html';
-        }
-
-        viewAll.addEventListener('click', function() {
-            goToJobPage('')
-        });
-
-    </script>
+    <script src="./js/editProfile.js" type="module"></script>
 
 </body>
 

@@ -4,23 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job page</title>
+    <title>Notification</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="./css/notificaiton.css" />
     <link rel="stylesheet" href="./css/job_page.css" />
     <link rel="stylesheet" href="./../common.css" />
 
 </head>
 
 <body>
-    <div class="loader-container">
-        <div class="loader"></div>
-      </div>
-
     <div class="top-pane">
         <div>
             <h2>BusYan</h2>
         </div>
         <div class="menu-icon">
+            
             <a href="#"><i class="fa-solid fa-house"></i></a>
             <a href="#"><i class="fa-solid fa-bell"></i></a>
             <a href="#"><i class="fa-solid fa-user"></i></a>
@@ -41,18 +39,19 @@
                 <span id="profileLogout" class="menu-item">Logout</span>
 
             </div>
-        </div>
+        </div>        
     </div>
+
+    
 
     <hr style="margin: 0px 20px 50px 20px">
 
     <div style="display: flex; justify-content: center;">
-        <input id="searchJobsInput" type="text" class="search-bar" placeholder="Search" />
-    </div>
+        <h2>Saved Jobs</h2>
+    </div>   
 
-    <h5 style="margin-left: 10px;">Recommended job for you</h5>
-    <div class="job-container">
-    </div>
+    <ul class="saved-jobs-ul">
+    </ul>
 
     <!-- Modal content -->
     <div id="jobPageModal" class="job-page-modal ">
@@ -199,7 +198,8 @@
 
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js "></script>
     <script src="./js/home.js" type="module"></script>
-    <script src="./js/job-page.js" type="module"></script>
+    <script src="./js/savedJobs.js" type="module"></script>
+
 </body>
 
 </html>
