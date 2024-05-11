@@ -398,11 +398,16 @@ function generateUserDetails() {
 
 function generateQuestionsForParticipant() {
     const questionnaires = tempJobData.questionnaires;
-    questionnairesListUl.innerHTML = '';
 
-    questionnaires.forEach(question => {
-        createQuestionItems(question);
-    });
+    if (typeof(questionnaires) === undefined || questionnaires === null) {
+        questionnairesListUl.innerHTML = '';
+
+        questionnaires.forEach(question => {
+            createQuestionItems(question);
+        });
+    }
+
+   
 }
 
 function createQuestionItems(question) {
