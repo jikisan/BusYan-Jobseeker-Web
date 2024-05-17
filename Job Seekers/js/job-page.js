@@ -399,13 +399,13 @@ function generateUserDetails() {
 function generateQuestionsForParticipant() {
     const questionnaires = tempJobData.questionnaires;
 
-    if (typeof(questionnaires) === undefined || questionnaires === null) {
-        questionnairesListUl.innerHTML = '';
+    questionnairesListUl.innerHTML = '';
 
+    if (Array.isArray(questionnaires) && questionnaires.length > 0) {
         questionnaires.forEach(question => {
             createQuestionItems(question);
         });
-    }
+    } 
 
    
 }
